@@ -6,3 +6,12 @@ Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each {|f| require f}
 
 RSpec.configure do |config|
 end
+
+def sign_up_new_user
+  visit "/"
+  click_link 'Sign up'
+  fill_in 'Email', :with => 'user@example.com'
+  fill_in 'Password', :with => 'password'
+  fill_in 'Password confirmation', :with => 'password'
+  click_button 'Sign up'
+end

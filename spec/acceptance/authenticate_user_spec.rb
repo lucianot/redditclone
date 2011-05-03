@@ -1,14 +1,16 @@
 require File.expand_path(File.dirname(__FILE__) + '/acceptance_helper')
 
 feature 'sign up' do
-  scenario 'sign up successful' do
-    visit "/"
-    click_link 'Sign up'
-    fill_in 'Login', :with => 'user@example.com'
-    fill_in 'Password', :with => 'password'
-    fill_in 'Confirm password', :with => 'password'
-    click_button 'OK'
-    page.should have_content "New user created"
+  scenario 'successful' do
+    sign_up_new_user
+    page.should have_content "Signed in as user@example.com"
+  end
+  
+  scenario 'unsuccessful' do
+    sign_up_new_user
+    click_link "Sign out"
+    sign_up_new_user
+    page.should have_content "Email has already been taken"
   end
 end
 
