@@ -15,3 +15,11 @@ def sign_up_new_user
   fill_in 'Password confirmation', :with => 'password'
   click_button 'Sign up'
 end
+
+def log_in_user
+  visit "/"
+  click_link 'Sign in'
+  fill_in 'Email', :with => 'user@example.com'
+  fill_in 'Password', :with => 'password'
+  click_button 'Sign in'
+end

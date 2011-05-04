@@ -6,7 +6,7 @@ feature 'sign up' do
     page.should have_content "Signed in as user@example.com"
   end
   
-  scenario 'unsuccessful' do
+  scenario 'failed' do
     sign_up_new_user
     click_link "Sign out"
     sign_up_new_user
@@ -14,23 +14,27 @@ feature 'sign up' do
   end
 end
 
-  # 
-  #   scenario 'sign up failed' do
-  #   end
-  # end
-  # 
-  # feature 'login' do
-  #   scenario 'login successful' do
-  #   end
-  # 
-  #   scenario 'login failed' do
-  #   end
-  # end
-  # 
-  # feature 'logout' do
-  #   scenario 'logout successful' do
-  #   end
-  # 
-  #   scenario 'logout failed' do
-  #   end
-  # end
+feature 'login' do
+  scenario 'successful' do
+    sign_up_new_user
+    click_link 'Sign out'
+    log_in_user
+    page.should have_content "Signed in as user@example.com"
+  end
+
+  scenario 'failed' do
+    log_in_user
+    page.should_not have_content "Signed in as user@example.com"
+  end
+end
+  
+feature 'logout' do
+  scenario 'successful' do
+    sign_up_new_user
+    click_link 'Sign out'
+    page.should have_content "Sign in or Sign up"
+  end
+
+  scenario 'failed' do
+  end
+end
