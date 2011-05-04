@@ -35,6 +35,8 @@ feature 'logout' do
     page.should have_content "Sign in or Sign up"
   end
 
-  scenario 'failed' do
-  end
+  # scenario 'failed' do
+  #   sign_up_new_user
+  #   click_link 'Sign out'
+  # end
 end
