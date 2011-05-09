@@ -6,4 +6,9 @@ feature 'display links' do
   
   scenario 'one or more links' do
   end
+  
+  scenario 'follow link' do
+  end
 end
+
+# kaminari

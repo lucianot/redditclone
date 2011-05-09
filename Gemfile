@@ -12,4 +12,6 @@ end
 group :test do
   gem 'capybara', :git => "git://github.com/jnicklas/capybara.git"
   gem 'factory_girl', '1.3.3'
+  gem 'valid_attribute'
+  gem 'spork', '0.9.0.rc5'
 end

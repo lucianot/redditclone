@@ -10,7 +10,13 @@ feature 'sign up' do
     sign_up_new_user
     click_link "Sign out"
     sign_up_new_user
-    page.should have_content "Email has already been taken"
+    page.should_not have_content "Signed in as user@example.com"
+  end
+  
+  scenario 'factory failed' do
+    user = Factory.create(:user)
+    sign_up_new_user
+    page.should_not have_content "Signed in as user@example.com"
   end
 end
 
@@ -18,6 +24,12 @@ feature 'login' do
   scenario 'successful' do
     sign_up_new_user
     click_link 'Sign out'
+    log_in_user
+    page.should have_content "Signed in as user@example.com"
+  end
+  
+  scenario 'factory successful' do
+    user = Factory.create(:user)
     log_in_user
     page.should have_content "Signed in as user@example.com"
   end
