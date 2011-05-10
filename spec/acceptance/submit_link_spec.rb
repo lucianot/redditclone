@@ -12,11 +12,13 @@ feature 'submit link' do
     log_in_user
     click_link "Submit link"
     fill_in "Title", :with => "This guy copied my site"
-    fill_in "URL", :with => "www.reddit.com"
-    click_button "Create link"
-    # page.should have_contect "This guy copied my site"
+    fill_in "Url", :with => "www.reddit.com"
+    click_button "Create Link"
+    page.should have_content "Link was successfully created."
+    Link.count.should == 1
   end
   
   scenario 'invalid' do
+    pending
   end
 end
