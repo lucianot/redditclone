@@ -19,6 +19,10 @@ feature 'submit link' do
   end
   
   scenario 'invalid' do
-    pending
+    user = Factory.create(:user)
+    log_in_user
+    click_link "Submit link"
+    click_button "Create Link"
+    page.should_not have_content "Link was successfully created."
   end
 end
