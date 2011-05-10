@@ -10,7 +10,8 @@ group :development, :test do
 end
 
 group :test do
-  gem 'capybara', :git => "git://github.com/jnicklas/capybara.git"
+  gem 'capybara', :git => 'https://github.com/jnicklas/capybara.git', 
+                  :ref => 'e73e77690ba4'
   gem 'factory_girl', '1.3.3'
   gem 'valid_attribute'
   gem 'spork', '0.9.0.rc5'
