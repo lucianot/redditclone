@@ -1,6 +1,7 @@
 require File.expand_path(File.dirname(__FILE__) + '/acceptance_helper')
 
 feature 'submit link' do
+  # necessary?
   scenario 'logged out' do
     visit "/"
     click_link "Submit link"
