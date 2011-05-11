@@ -15,7 +15,7 @@ describe User do
   describe "link associations" do
         
     before(:each) do
-      @user = User.create( :email => "user@example.com",
+      @user = User.create!( :email => "user@example.com",
                            :password => 'password')
     end    
         

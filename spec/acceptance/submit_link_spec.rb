@@ -9,7 +9,7 @@ feature 'submit link' do
   end
   
   scenario 'logged in' do
-    user = Factory.create(:user)
+    user = Factory(:user)
     log_in_user
     click_link "Submit link"
     fill_in "Title", :with => "This guy copied my site"
@@ -20,7 +20,7 @@ feature 'submit link' do
   end
   
   scenario 'invalid' do
-    user = Factory.create(:user)
+    user = Factory(:user)
     log_in_user
     click_link "Submit link"
     click_button "Create Link"

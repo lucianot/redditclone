@@ -1,0 +1,19 @@
+<p>Welcome to Reddit Clone!</p>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Url</th>
+    <th>User</th>
+  </tr>
+
+<% @links.each do |link| %>
+  <tr>
+    <td><%= link.title %></td>
+    <td><%= link.url %></td>
+    <td><%= link.user.email %></td>
+  </tr>
+<% end %>
+</table>
+
+<p id="notice"><%= notice %></p>

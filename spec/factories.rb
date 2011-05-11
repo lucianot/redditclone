@@ -5,7 +5,7 @@ Factory.define :user do |user|
 end
 
 Factory.define :link do |link|
-  link.title "This guy copied my site"
-  link.url  "www.reddit.com"
+  link.title 'This guy copied my site'
+  link.url "www.reddit.com"
   link.association :user
 end

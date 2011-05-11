@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe Link do
+  
   before(:each) do
     @user = Factory(:user)
     @attr = { :title => "This guy copied my site", 

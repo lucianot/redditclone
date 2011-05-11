@@ -1,4 +1,13 @@
 class LinksController < ApplicationController
+  # GET /links
+  # GET /links.xml
+  def index
+    @links = Link.all
+
+    respond_to do |format|
+      format.html # index.html.erb
+    end
+  end
   
   # GET /links/new
   # GET /links/new.xml
