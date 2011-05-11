@@ -11,4 +11,17 @@ describe User do
   #   user.last_name = "Kent"
   #   user.full_name.should == "Clark Kent"
   # end
+    
+  describe "link associations" do
+        
+    before(:each) do
+      @user = User.create( :email => "user@example.com",
+                           :password => "password" )
+    end    
+        
+    it 'should have a link attribute' do
+      @user.should respond_to(:links)
+    end
+  end
 end
+

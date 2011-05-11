@@ -20,7 +20,7 @@ describe Link do
     end
   end
   
-  describe 'validations' do
+  describe "validations" do
   
     it 'is valid with valid attributes' do
       @link.should be_valid
