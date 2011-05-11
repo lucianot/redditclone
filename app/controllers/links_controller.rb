@@ -1,4 +1,6 @@
 class LinksController < ApplicationController
+  skip_before_filter :authenticate_user!, :only => :index
+  
   # GET /links
   # GET /links.xml
   def index

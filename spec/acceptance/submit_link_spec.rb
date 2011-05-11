@@ -9,13 +9,15 @@ feature 'submit link' do
   end
   
   scenario 'logged in' do
-    user = Factory(:user)
-    log_in_user
-    click_link "Submit link"
-    fill_in "Title", :with => "This guy copied my site"
-    fill_in "Url", :with => "www.reddit.com"
-    click_button "Create Link"
-    page.should have_content "Link was successfully created."
+    expect do
+      user = Factory(:user)
+      log_in_user
+      click_link "Submit link"
+      fill_in "Title", :with => "This guy copied my site"
+      fill_in "Url", :with => "www.reddit.com"
+      click_button "Create Link"
+      page.should have_content "Link was successfully created."
+    end.to change('Link.count').by(1)
     # Link.count.should == 1
   end
   
