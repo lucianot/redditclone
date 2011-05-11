@@ -6,7 +6,7 @@ feature 'display links' do
   end
   
   scenario 'one or more links' do
-    link = Factory.create(:link)
+    link = Factory(:link)
     visit "/"
     page.should have_content "This guy copied my site"
   end

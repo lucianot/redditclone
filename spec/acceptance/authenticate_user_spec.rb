@@ -7,16 +7,10 @@ feature 'sign up' do
   end
   
   scenario 'failed' do
-    sign_up_new_user
-    click_link "Sign out"
-    sign_up_new_user
-    page.should_not have_content "Welcome! You have signed up successfully"
-  end
-  
-  scenario 'factory failed' do
-    user = Factory(:user)
-    sign_up_new_user
-    page.should_not have_content "Welcome! You have signed up successfully"
+    visit "/"
+    click_link 'Sign up'
+    click_button 'Sign up'
+    page.should have_content "prohibited this user from being saved"
   end
 end
 
