@@ -16,7 +16,7 @@ describe User do
         
     before(:each) do
       @user = User.create( :email => "user@example.com",
-                           :password => "password" )
+                           :password => 'password')
     end    
         
     it 'should have a link attribute' do

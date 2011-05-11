@@ -5,7 +5,7 @@ Redditclone::Application.routes.draw do
   resources :links, :only => [:new, :create]
 
   devise_for :users
-
+  
   root :to => "homepage#index"
 
 end
