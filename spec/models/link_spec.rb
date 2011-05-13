@@ -8,43 +8,61 @@ describe Link do
               :url => "www.reddit.com" }
     @link = @user.links.create!(@attr)
   end
+
+  subject { @link }
   
-  # describe "user associations" do
-  #       
-  #   it 'has a user attribute' do
-  #     @link.should respond_to(:user)
+  context 'when has valid attributes' do
+    it { should be_valid }
+  end
+  
+  context 'when title is empty' do
+    before { @link.title = nil }
+    it { should_not be_valid }
+  end
+  
+  context 'when url is empty' do
+    before { @link.url = nil }
+    it { should_not be_valid }
+  end
+  
+  context 'when url is invalid' do
+    before { @link.url = 'invalid_url' }
+    it { should_not be_valid }
+  end
+
+  context 'when user is empty' do
+    before { @link.user = nil }
+    it { should_not be_valid }
+  end
+  
+  # describe "validations" do
+  # 
+  #   it 'is valid with valid attributes' do
+  #     @link.should be_valid
   #   end
-  #   
-  #   it 'should have the right associated user' do
-  #     @link.user_id.should == @user.id
-  #     @link.user.should == @user
+  # 
+  #   it 'is invalid without a title' do
+  #     @link.title = nil
+  #     @link.should_not be_valid
+  #   end
+  # 
+  #   it 'is invalid without a url' do
+  #     @link.url = nil
+  #     @link.should_not be_valid
+  #   end
+  # 
+  #   it 'is invalid without a valid url' do
+  #     @link.url = "invalid_url"
+  #     @link.should_not be_valid
+  #   end
+  # 
+  #   it 'is invalid without a user' do
+  #     @link.user = nil
+  #     @link.should_not be_valid
   #   end
   # end
   
-  describe "validations" do
-  
-    it 'is valid with valid attributes' do
-      @link.should be_valid
-    end
-  
-    it 'is invalid without a title' do
-      @link.title = nil
-      @link.should_not be_valid
-    end
-
-    it 'is invalid without a url' do
-      @link.url = nil
-      @link.should_not be_valid
-    end
-  
-    it 'is invalid without a valid url' do
-      @link.url = "invalid_url"
-      @link.should_not be_valid
-    end
-  
-    it 'is invalid without a user' do
-      @link.user = nil
-      @link.should_not be_valid
-    end
+  describe "append http to url" do
+    pending
   end
 end
