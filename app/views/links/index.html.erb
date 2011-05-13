@@ -1,19 +1,17 @@
 <p>Welcome to Reddit Clone!</p>
 
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Url</th>
-    <th>User</th>
-  </tr>
-
-<% @links.each do |link| %>
-  <tr>
-    <td><%= link_to link.title, link.url %></td>
-    <td><%= link.url %></td>
-    <td><%= link.user.email %></td>
-  </tr>
+<% unless @links.empty? %>
+	<table>
+	<% @links.each do |link| %>
+	  <tr>
+	    <td><%= link_to link.title, link.url %></td>
+	    <td><%= link.url %></td>
+	    <td><%= link.user.email %></td>
+	  </tr>
+	<% end %>
+	</table>
+<% else %>
+	No links yet!
 <% end %>
-</table>
 
 <p id="notice"><%= notice %></p>
