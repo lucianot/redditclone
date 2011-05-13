@@ -30,10 +30,15 @@ Spork.prefork do
     # examples within a transaction, remove the following line or assign false
     # instead of true.
     config.use_transactional_fixtures = true
+    
+    # Needed for Spork 
+    ActiveSupport::Dependencies.clear
   end
 end
 
 Spork.each_run do
   # require File.expand_path("../factories", __FILE__)
+  load "#{Rails.root}/config/routes.rb" 
+  Dir["#{Rails.root}/app/**/*.rb"].each { |f| load f }
 end
 
