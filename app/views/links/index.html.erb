@@ -9,7 +9,7 @@
 
 <% @links.each do |link| %>
   <tr>
-    <td><%= link.title %></td>
+    <td><%= link_to link.title, link.url %></td>
     <td><%= link.url %></td>
     <td><%= link.user.email %></td>
   </tr>

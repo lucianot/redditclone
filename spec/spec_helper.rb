@@ -34,4 +34,6 @@ Spork.prefork do
 end
 
 Spork.each_run do
+  # require File.expand_path("../factories", __FILE__)
 end
+

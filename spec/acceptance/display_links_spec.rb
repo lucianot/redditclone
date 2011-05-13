@@ -8,10 +8,14 @@ feature 'display links' do
   scenario 'one or more links' do
     link = Factory(:link)
     visit "/"
-    page.should have_content "This guy copied my site"
+    page.should have_link "This guy copied my site"
   end
   
   scenario 'follow link' do
-    pending
+    pending 'find how to test external link'
+    link = Factory(:link)
+    visit "/"
+    click_link "This guy copied my site"
+    response.should redirect_to "http://www.reddit.com"
   end
 end

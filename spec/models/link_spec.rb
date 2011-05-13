@@ -9,17 +9,17 @@ describe Link do
     @link = @user.links.create!(@attr)
   end
   
-  describe "user associations" do
-        
-    it 'has a user attribute' do
-      @link.should respond_to(:user)
-    end
-    
-    it 'should have the right associated user' do
-      @link.user_id.should == @user.id
-      @link.user.should == @user
-    end
-  end
+  # describe "user associations" do
+  #       
+  #   it 'has a user attribute' do
+  #     @link.should respond_to(:user)
+  #   end
+  #   
+  #   it 'should have the right associated user' do
+  #     @link.user_id.should == @user.id
+  #     @link.user.should == @user
+  #   end
+  # end
   
   describe "validations" do
   
@@ -38,7 +38,6 @@ describe Link do
     end
   
     it 'is invalid without a valid url' do
-      pending 'url format validation'
       @link.url = "invalid_url"
       @link.should_not be_valid
     end
