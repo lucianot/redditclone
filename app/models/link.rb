@@ -7,9 +7,9 @@ class Link < ActiveRecord::Base
             # validates_url_format_of gem
   validates :user, :presence => true
   
-  def host
+  def clean_url
     parsed_url = URI.parse(self.url).host
-    unless parsed_url.nil? 
+    if parsed_url
       parsed_url.sub(/\Awww\./, '')
     else
       nil

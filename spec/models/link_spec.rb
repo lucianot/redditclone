@@ -35,44 +35,18 @@ describe Link do
     it { should_not be_valid }
   end
   
-  describe "#host" do
+  describe "#clean_url" do
     it 'parses valid URLs' do
       @link.url = 'http://www.google.com/extrastuff'
-      @link.host.should == 'google.com'
+      @link.clean_url.should == 'google.com'
     end
     
+    #add more examples
     it 'returns nil for invalid URLs' do
-      @link.url = 'foobar'
-      @link.host.should be_nil
+      @link.url = 'invalid_url'
+      @link.clean_url.should be_nil
     end
   end
-  
-  # describe "validations" do
-  # 
-  #   it 'is valid with valid attributes' do
-  #     @link.should be_valid
-  #   end
-  # 
-  #   it 'is invalid without a title' do
-  #     @link.title = nil
-  #     @link.should_not be_valid
-  #   end
-  # 
-  #   it 'is invalid without a url' do
-  #     @link.url = nil
-  #     @link.should_not be_valid
-  #   end
-  # 
-  #   it 'is invalid without a valid url' do
-  #     @link.url = "invalid_url"
-  #     @link.should_not be_valid
-  #   end
-  # 
-  #   it 'is invalid without a user' do
-  #     @link.user = nil
-  #     @link.should_not be_valid
-  #   end
-  # end
   
   describe "append http to url" do
     pending
