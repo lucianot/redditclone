@@ -5,7 +5,7 @@ describe Link do
   before(:each) do
     @user = Factory(:user)
     @attr = { :title => "This guy copied my site", 
-              :url => "www.reddit.com" }
+              :url => "http://www.reddit.com" }
     @link = @user.links.create!(@attr)
   end
 
@@ -33,6 +33,18 @@ describe Link do
   context 'when user is empty' do
     before { @link.user = nil }
     it { should_not be_valid }
+  end
+  
+  describe "#host" do
+    it 'parses valid URLs' do
+      @link.url = 'http://www.google.com/extrastuff'
+      @link.host.should == 'google.com'
+    end
+    
+    it 'returns nil for invalid URLs' do
+      @link.url = 'foobar'
+      @link.host.should be_nil
+    end
   end
   
   # describe "validations" do
