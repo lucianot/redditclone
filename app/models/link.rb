@@ -3,11 +3,11 @@ class Link < ActiveRecord::Base
   
   validates :title, :presence => true
   validates :url, :presence => true
-  validates_url_format_of :complete_url,
+  validates_url_format_of :full_url,
                           :message => 'is completely unacceptable'
   validates :user, :presence => true
   
-  def complete_url
+  def full_url
     regex = Regexp.new(%r{\Ahttps?://}i)
     # use try instead?
     if self.url.nil?
@@ -21,8 +21,8 @@ class Link < ActiveRecord::Base
   
   def clean_url
     #use try instead?
-    unless complete_url.nil?
-      parsed_url = URI.parse(self.complete_url).host.sub(/\Awww\./, '')
+    unless full_url.nil?
+      parsed_url = URI.parse(self.full_url).host.sub(/\Awww\./, '')
     else
       nil
     end

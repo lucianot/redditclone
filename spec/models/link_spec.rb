@@ -40,16 +40,16 @@ describe Link do
     it { should_not be_valid }
   end
   
-  describe "#complete_url" do
+  describe "#full_url" do
     it 'adds http to domain' do
       @link.url = 'www.google.com'
-      @link.complete_url.should == 'http://www.google.com'
+      @link.full_url.should == 'http://www.google.com'
     end
     
     #add https example
     it 'does nothing to complete URL' do
       @link.url = 'http://www.google.com'
-      @link.complete_url.should == 'http://www.google.com'
+      @link.full_url.should == 'http://www.google.com'
     end
   end
   
