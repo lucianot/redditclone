@@ -2,18 +2,29 @@ class Link < ActiveRecord::Base
   belongs_to :user
   
   validates :title, :presence => true
-  validates :url, :presence => true, 
-            :format => { :with => /((http|https):\/\/|[a-zA-Z0-9]+(\.[a-zA-Z0-9]+)+.*)$/ }
-            # validates_url_format_of gem
+  validates :url, :presence => true
+  validates_url_format_of :complete_url,
+                          :message => 'is completely unacceptable'
   validates :user, :presence => true
   
+  def complete_url
+    regex = Regexp.new(%r{\Ahttps?://}i)
+    # use try instead?
+    if self.url.nil?
+      nil
+    elsif self.url.match(regex)
+      self.url
+    else
+      "http://#{self.url}"
+    end
+  end
+  
   def clean_url
-    parsed_url = URI.parse(self.url).host
-    if parsed_url
-      parsed_url.sub(/\Awww\./, '')
+    #use try instead?
+    unless complete_url.nil?
+      parsed_url = URI.parse(self.complete_url).host.sub(/\Awww\./, '')
     else
       nil
     end
   end
-  
 end

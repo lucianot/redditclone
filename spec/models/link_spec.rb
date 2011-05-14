@@ -15,6 +15,11 @@ describe Link do
     it { should be_valid }
   end
   
+  context 'when has url domain without http' do
+    before { @link.url = "www.reddit.com" }
+    it { should be_valid }
+  end
+  
   context 'when title is empty' do
     before { @link.title = nil }
     it { should_not be_valid }
@@ -35,6 +40,19 @@ describe Link do
     it { should_not be_valid }
   end
   
+  describe "#complete_url" do
+    it 'adds http to domain' do
+      @link.url = 'www.google.com'
+      @link.complete_url.should == 'http://www.google.com'
+    end
+    
+    #add https example
+    it 'does nothing to complete URL' do
+      @link.url = 'http://www.google.com'
+      @link.complete_url.should == 'http://www.google.com'
+    end
+  end
+  
   describe "#clean_url" do
     it 'parses valid URLs' do
       @link.url = 'http://www.google.com/extrastuff'
@@ -42,13 +60,9 @@ describe Link do
     end
     
     #add more examples
-    it 'returns nil for invalid URLs' do
-      @link.url = 'invalid_url'
+    it 'returns nil for nil URLs' do
+      @link.url = nil
       @link.clean_url.should be_nil
     end
-  end
-  
-  describe "append http to url" do
-    pending
   end
 end
