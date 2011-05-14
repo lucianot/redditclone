@@ -4,7 +4,7 @@
 	<table>
 	<% @links.each do |link| %>
 	  <tr>
-	    <td><%= link_to link.title, link.full_url %></td>
+	    <td><%= link_to link.title, link.url %></td>
 	    <td><%= "(#{link.clean_url})" %></td>
 	    <td><%= "by #{link.user.email}" %></td>
 	  </tr>

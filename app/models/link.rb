@@ -3,28 +3,28 @@ class Link < ActiveRecord::Base
   
   validates :title, :presence => true
   validates :url, :presence => true
-  validates_url_format_of :full_url,
+  validates_url_format_of :url,
                           :message => 'is completely unacceptable'
   validates :user, :presence => true
   
-  def full_url
-    regex = Regexp.new(%r{\Ahttps?://}i)
-    # use try instead?
-    if self.url.nil?
-      nil
-    elsif self.url.match(regex)
-      self.url
+  before_validation :append_url, :only => :url
+  
+  def clean_url
+    #use try instead for nil?
+    unless self.url.nil?
+      parsed_url = URI.parse(self.url).host.sub(/\Awww\./, '')
     else
-      "http://#{self.url}"
+      nil
     end
   end
   
-  def clean_url
-    #use try instead?
-    unless full_url.nil?
-      parsed_url = URI.parse(self.full_url).host.sub(/\Awww\./, '')
-    else
-      nil
+  protected
+  
+  def append_url
+    regex = Regexp.new(%r{\Ahttps?://}i)
+    # use try instead for nil?
+    unless self.url.nil? or self.url.match(regex)
+      self.url = "http://#{self.url}"
     end
   end
 end
