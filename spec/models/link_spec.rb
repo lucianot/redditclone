@@ -15,9 +15,21 @@ describe Link do
     it { should be_valid }
   end
   
-  context 'when has url domain without http' do
-    before { @link.url = "www.reddit.com" }
-    it { should be_valid }
+  context 'when url is valid' do
+    it "should be valid" do 
+      should have_valid(:url).when('www.google.com', 
+                                    "http://www.google.com",
+                                    "https://www.google.com",
+                                    'www.google.com/extra')
+    end
+  end
+  
+  context 'when url is invalid' do
+    it 'should not be valid' do
+      should_not have_valid(:url).when('invalid_url', 
+                                        ' ', 
+                                        nil) 
+    end
   end
   
   context 'when title is empty' do
@@ -25,18 +37,8 @@ describe Link do
     it { should_not be_valid }
   end
   
-  context 'when url is empty' do
-    before { @link.url = nil }
-    it { should_not be_valid }
-  end
-  
-  context 'when url is invalid' do
-    before { @link.url = 'invalid_url' }
-    it { should_not be_valid }
-  end
-
-  context 'when user is empty' do
-    before { @link.user = nil }
+  context 'when title is empty' do
+    before { @link.title = nil }
     it { should_not be_valid }
   end
   
@@ -54,7 +56,7 @@ describe Link do
       @link.url.should == 'http://www.google.com'
     end
   end
-  
+    
   describe "#clean_url" do
     it 'parses valid URLs' do
       @link.url = 'http://www.google.com/extrastuff'
