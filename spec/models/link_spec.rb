@@ -37,8 +37,8 @@ describe Link do
     it { should_not be_valid }
   end
   
-  context 'when title is empty' do
-    before { @link.title = nil }
+  context 'when user is empty' do
+    before { @link.user = nil }
     it { should_not be_valid }
   end
   

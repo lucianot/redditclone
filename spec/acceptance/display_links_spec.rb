@@ -9,6 +9,7 @@ feature 'display links' do
   scenario 'one or more links' do
     link = Factory(:link)
     visit "/"
+    page.should have_content "1."
     page.should have_link("This guy copied my site", 
         :href => "http://www.reddit.com")
     page.should have_content "(reddit.com)"
