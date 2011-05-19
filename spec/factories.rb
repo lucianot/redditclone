@@ -1,5 +1,7 @@
+Factory.sequence(:email) { |n| "user#{n}@example.com" }
+
 Factory.define :user do |user|
-  user.email "user@example.com"
+  user.email { Factory.next :email }
   user.password "password"
   user.password_confirmation { |u| u.password }
 end

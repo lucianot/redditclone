@@ -14,7 +14,7 @@ feature 'display links' do
     page.should have_link("This guy copied my site", 
         :href => "http://www.reddit.com")
     page.should have_content "(reddit.com)"
-    page.should have_content "by user@example.com"
+    page.should have_content "by user1@example.com"
     page.should have_content "ago"
   end
 end
