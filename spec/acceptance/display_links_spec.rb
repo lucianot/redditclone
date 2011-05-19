@@ -1,6 +1,7 @@
 require File.expand_path(File.dirname(__FILE__) + '/acceptance_helper')
 
 feature 'display links' do
+  
   scenario 'no links' do
     visit "/"
     page.should have_content "No links yet"
@@ -14,5 +15,6 @@ feature 'display links' do
         :href => "http://www.reddit.com")
     page.should have_content "(reddit.com)"
     page.should have_content "by user@example.com"
+    page.should have_content "ago"
   end
 end
