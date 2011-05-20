@@ -9,5 +9,5 @@ end
 Factory.define :link do |link|
   link.title 'This guy copied my site'
   link.url 'www.reddit.com'
-  link.association :user
+  link.association :submitter, :factory => :user
 end

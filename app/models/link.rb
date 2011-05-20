@@ -1,12 +1,13 @@
 class Link < ActiveRecord::Base
-  belongs_to :user
+  belongs_to :submitter, :class_name => 'User',
+                         :foreign_key => 'user_id'
   has_many :votes
   
   validates :title, :presence => true
   validates :url, :presence => true
   validates_url_format_of :url,
                           :message => 'is completely unacceptable'
-  validates :user, :presence => true
+  validates :submitter, :presence => true
   
   before_validation :append_url, :only => :url
   

@@ -3,10 +3,10 @@ require 'spec_helper'
 describe Link do
   
   before(:each) do
-    @user = Factory(:user)
+    @submitter = Factory(:user)
     @attr = { :title => "This guy copied my site", 
               :url => "http://www.reddit.com" }
-    @link = @user.links.create!(@attr)
+    @link = @submitter.links.create!(@attr)
   end
 
   subject { @link }
@@ -37,8 +37,8 @@ describe Link do
     it { should_not be_valid }
   end
   
-  context 'when user is empty' do
-    before { @link.user = nil }
+  context 'when submitter is empty' do
+    before { @link.submitter = nil }
     it { should_not be_valid }
   end
   
