@@ -5,7 +5,7 @@ describe Vote do
   before(:each) do
     @link = Factory(:link)
     @voter = Factory(:user)
-    @attr = { :value => 1, :user => @voter, :link => @link }
+    @attr = { :value => 1, :voter => @voter, :link => @link }
     @vote = Vote.create!(@attr)
   end
   
@@ -20,8 +20,8 @@ describe Vote do
     it { should_not be_valid }
   end
   
-  context 'when user is empty' do
-    before { @vote.user = nil }
+  context 'when voter is empty' do
+    before { @vote.voter = nil }
     it { should_not be_valid }
   end
   
