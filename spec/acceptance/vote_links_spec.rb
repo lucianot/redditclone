@@ -4,16 +4,12 @@ feature 'voting' do
   
   context 'logged in' do
   
-    # before(:all) do
-    #   @user = Factory(:user)
-    #   link = Factory(:link)
-    #   log_in_user
-    # end
+    before(:each) do
+      @link = Factory(:link)
+      log_in_user
+    end
     
     scenario 'upvote link' do
-      pending 'add to view'
-      link = Factory(:link)
-      log_in_user
       click_button "Upvote"
       page.should_not have_button("Upvote")
       # expect do
