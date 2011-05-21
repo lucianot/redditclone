@@ -10,8 +10,9 @@ feature 'voting' do
     end
     
     scenario 'upvote link' do
-      click_button "Upvote"
-      page.should_not have_button("Upvote")
+      visit '/'
+      click_link 'upvote=>1'
+      # page.should_not have_button("Upvote")
       # expect do
       #   click_button "Upvote"
       #   button.should be_disabled

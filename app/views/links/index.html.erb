@@ -5,7 +5,8 @@
 	<% @links.each_with_index do |link, position| %>
 	  <tr>
 			<td><%= "#{position+1}." %>
-			<td><% link_to image_tag("arrowup.png", :border => 0), 
+			<td><%= link_to image_tag("arrowup.png", :alt => "upvote=>#{position+1}", 
+																							 :border => 0), 
 								root_path %></td>
 	    <td><%= link_to link.title, link.url %></td>
 	    <td><%= "(#{link.clean_url})" %></td>
@@ -15,7 +16,7 @@
 	<% end %>
 	</table>
 <% else %>
-	No links yet!
+	No links yet!!
 <% end %>
 
 <p id="notice"><%= notice %></p>
