@@ -42,6 +42,15 @@ describe Link do
     it { should_not be_valid }
   end
   
+  context 'when link is destroyed' do
+    it 'should destroy dependent votes' do
+      @vote = Vote.create!(:voter => @submitter, :link => @link, :value => 1)
+      expect do
+        @link.destroy
+      end.to change {Vote.count}.by(-1)
+    end
+  end
+  
   describe "#append_url" do
     it 'adds http to domain' do
       @link.url = 'www.google.com'
