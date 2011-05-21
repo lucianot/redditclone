@@ -1,20 +1,17 @@
 class LinksController < ApplicationController
-  # skip_before_filter :authenticate_user!, :only => :index
+  before_filter :authenticate_user!, :except => :index
   
   # GET /links
-  # GET /links.xml
   def index
     @links = Link.all
   end
   
   # GET /links/new
-  # GET /links/new.xml
   def new
     @link = Link.new
   end
   
-  # POST /sites
-  # POST /sites.xml
+  # POST /links
   def create
     @link = current_user.links.build(params[:link])
     if @link.save
@@ -23,4 +20,12 @@ class LinksController < ApplicationController
       render :action => "new"
     end
   end
+  
+  # POST /links/1/upvote
+  def upvote
+    @link = Link.find(params[:id])
+    @link.upvote(current_user)
+    redirect_to root_path
+  end
+  
 end

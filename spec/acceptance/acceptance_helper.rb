@@ -16,10 +16,10 @@ def sign_up_new_user
   click_button 'Sign up'
 end
 
-def log_in_user
+def log_in(user)
   visit "/"
   click_link 'Sign in'
-  fill_in 'Email', :with => 'user@example.com'
-  fill_in 'Password', :with => 'password'
+  fill_in 'Email', :with => user.email
+  fill_in 'Password', :with => user.password
   click_button 'Sign in'
 end

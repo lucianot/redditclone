@@ -6,8 +6,8 @@ feature 'submit link' do
     
     scenario 'valid' do
       expect do
-        user = Factory(:user, :email => "user@example.com")
-        log_in_user
+        user = Factory(:user)
+        log_in(user)
         click_link "Submit link"
         fill_in "Title", :with => "This guy copied my site"
         fill_in "Url", :with => "http://www.reddit.com"
@@ -17,8 +17,8 @@ feature 'submit link' do
     end
 
     scenario 'invalid' do
-      user = Factory(:user, :email => "user@example.com")
-      log_in_user
+      user = Factory(:user)
+      log_in(user)
       click_link "Submit link"
       click_button "Create Link"
       page.should_not have_content "Link was successfully created."

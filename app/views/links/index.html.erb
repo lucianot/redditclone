@@ -7,7 +7,7 @@
 			<td><%= "#{position+1}." %>
 			<td><%= link_to image_tag("arrowup.png", :alt => "upvote=>#{position+1}", 
 																							 :border => 0), 
-								root_path %></td>
+								 upvote_link_path(:id => link.id), :method => :post %></td>
 	    <td><%= link_to link.title, link.url %></td>
 	    <td><%= "(#{link.clean_url})" %></td>
 	    <td><%= "by #{link.submitter.email}" %></td>
@@ -16,7 +16,7 @@
 	<% end %>
 	</table>
 <% else %>
-	No links yet!!
+	No links yet!
 <% end %>
 
 <p id="notice"><%= notice %></p>

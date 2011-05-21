@@ -20,13 +20,15 @@ feature 'authenticate' do
   context 'login' do
 
     scenario 'valid' do
-      user = Factory(:user, :email => "user@example.com")
-      log_in_user
+      user = Factory(:user)
+      log_in(user)
       page.should have_content "Signed in successfully"
     end
 
     scenario 'invalid' do
-      log_in_user
+      user = Factory(:user)
+      user.email = 'unregistered@example.com'
+      log_in(user)
       page.should_not have_content "Signed in successfully"
     end
   end

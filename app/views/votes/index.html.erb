@@ -1,0 +1,18 @@
+<h1>Listing votes</h1>
+
+<table>
+  <tr>
+    <th>Link</th>
+    <th>User</th>
+    <th>Value</th>
+  </tr>
+
+<% @votes.each do |vote| %>
+  <tr>
+    <td><%= vote.link.title %></td>
+    <td><%= vote.voter.email %></td>
+		<td><%= vote.value %></td>
+		<td><%= link_to 'Destroy', vote, :method => :delete %></td>
+  </tr>
+<% end %>
+</table>

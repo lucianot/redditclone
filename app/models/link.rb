@@ -11,6 +11,12 @@ class Link < ActiveRecord::Base
   
   before_validation :append_url, :only => :url
   
+  def upvote(voter)
+    vote = Vote.create!( :link => self,
+                         :voter => voter,
+                         :value => 1) 
+  end
+  
   def clean_url
     #use try instead for nil?
     unless self.url.nil?

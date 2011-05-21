@@ -8,13 +8,14 @@ feature 'display links' do
   end
   
   scenario 'one or more links' do
-    link = Factory(:link)
+    user = Factory(:user, :email => 'user@example.com')
+    link = Factory(:link, :submitter => user)
     visit "/"
     page.should have_content "1."
     page.should have_link("This guy copied my site", 
         :href => "http://www.reddit.com")
     page.should have_content "(reddit.com)"
-    page.should have_content "by user1@example.com"
+    page.should have_content "by user@example.com"
     page.should have_content "ago"
   end
 end
