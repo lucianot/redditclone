@@ -51,6 +51,35 @@ describe Link do
     end
   end
   
+  describe "#voted_by?(user)" do
+    before do
+      @other_link = Factory(:link)
+      @voter = Factory(:user)
+    end
+    
+    it 'returns true if vote exists' do
+      @vote = Factory(:vote, :link => @other_link, :voter => @voter)
+      @other_link.voted_by?(@voter).should be_true
+    end
+    
+    it 'returns false if vote does not exist' do
+      @other_link.voted_by?(@voter).should be_false
+    end
+  end
+
+  describe "#clean_url" do
+    it 'parses valid URLs' do
+      @link.url = 'http://www.google.com/extrastuff'
+      @link.clean_url.should == 'google.com'
+    end
+
+    #add more examples
+    it 'returns nil for nil URLs' do
+      @link.url = nil
+      @link.clean_url.should be_nil
+    end
+  end  
+  
   describe "#append_url" do
     it 'adds http to domain' do
       @link.url = 'www.google.com'
@@ -65,17 +94,5 @@ describe Link do
       @link.url.should == 'http://www.google.com'
     end
   end
-    
-  describe "#clean_url" do
-    it 'parses valid URLs' do
-      @link.url = 'http://www.google.com/extrastuff'
-      @link.clean_url.should == 'google.com'
-    end
-    
-    #add more examples
-    it 'returns nil for nil URLs' do
-      @link.url = nil
-      @link.clean_url.should be_nil
-    end
-  end
+
 end

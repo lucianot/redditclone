@@ -44,8 +44,7 @@ describe Vote do
       vote = Vote.new(@attr)
       vote.save
       vote.should_not be_valid
-      vote.errors[:link_id].should == ["has already been taken", 
-                                       "has already been taken"]
+      vote.errors[:link_id].should include("has already been taken")
     end
   end
   
