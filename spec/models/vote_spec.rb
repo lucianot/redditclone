@@ -6,7 +6,7 @@ describe Vote do
     @link = Factory(:link)
     @voter = Factory(:user)
     @attr = { :value => 1, :voter => @voter, :link => @link }
-    @vote = Vote.create!(@attr)
+    @vote = Vote.new(@attr)
   end
   
   subject { @vote }
@@ -26,15 +26,26 @@ describe Vote do
   end
   
   context 'when value is valid' do
-    it "should be valid" do 
-      should have_valid(:value).when(-1, 0, 1)
+    it 'should be valid' do 
+      should have_valid(:value).when(-1, 1)
     end
   end
   
   context 'when value is invalid' do
-    it "should not be valid" do 
+    it 'should not be valid' do 
       should_not have_valid(:value).when(-2, 2, -0.5, 0.5, 
                                         "string", "", nil)
+    end
+  end
+  
+  context 'when vote is not unique' do
+    before { @vote.save }
+    it 'should not be valid' do
+      vote = Vote.new(@attr)
+      vote.save
+      vote.should_not be_valid
+      vote.errors[:link_id].should == ["has already been taken", 
+                                       "has already been taken"]
     end
   end
   

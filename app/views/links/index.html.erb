@@ -5,9 +5,14 @@
 	<% @links.each_with_index do |link, position| %>
 	  <tr>
 			<td><%= "#{position+1}." %>
-			<td><%= link_to image_tag("arrowup.png", :alt => "upvote=>#{position+1}", 
-																							 :border => 0), 
-								 upvote_link_path(:id => link.id), :method => :post %></td>
+			<td><% if link.voted_by?(current_user) %>
+						<%= image_tag("arrowup.png", :alt => "upvote=>#{position+1}", 
+																				 :border => 0) %>
+					<% else %>
+						<%= link_to image_tag("arrowup.png", :alt => "upvote=>#{position+1}", 
+																							 	 :border => 0), 
+								 upvote_link_path(:id => link.id), :method => :post %>
+					<% end %></td>
 	    <td><%= link_to link.title, link.url %></td>
 	    <td><%= "(#{link.clean_url})" %></td>
 	    <td><%= "by #{link.submitter.email}" %></td>

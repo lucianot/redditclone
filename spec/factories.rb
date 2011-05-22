@@ -11,3 +11,9 @@ Factory.define :link do |link|
   link.url 'www.reddit.com'
   link.association :submitter, :factory => :user
 end
+
+Factory.define :vote do |vote|
+  vote.value 1
+  vote.association :voter, :factory => :user
+  vote.association :link
+end

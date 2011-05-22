@@ -4,6 +4,7 @@ class Vote < ActiveRecord::Base
   belongs_to :link
   
   validates :voter, :presence => true
-  validates :link, :presence => true
-  validates :value, :inclusion => { :in => [-1, 0, 1] }
+  validates :link_id, :presence => true,
+                      :uniqueness => { :scope => :user_id }
+  validates :value, :inclusion => { :in => [-1, 1] }
 end

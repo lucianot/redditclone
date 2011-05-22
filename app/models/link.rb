@@ -12,21 +12,27 @@ class Link < ActiveRecord::Base
   before_validation :append_url, :only => :url
   
   def upvote(voter)
-    vote = Vote.create!( :link => self,
-                         :voter => voter,
-                         :value => 1) 
+    vote = voter.votes.create!(:link => self, :value => 1) 
   end
   
-  def clean_url
-    #use try instead for nil?
-    unless self.url.nil?
-      parsed_url = URI.parse(self.url).host.sub(/\Awww\./, '')
+  def voted_by?(user)
+    if user
+      self.votes.find_by_user_id(user.id)
     else
       nil
     end
   end
   
-  protected
+  def clean_url
+    #use try instead for nil?
+    unless self.url.nil?
+     parsed_url = URI.parse(self.url).host.sub(/\Awww\./, '')
+    else
+      nil
+    end
+  end
+  
+  private
   
   def append_url
     regex = Regexp.new(%r{\Ahttps?://}i)

@@ -15,6 +15,7 @@ feature 'voting' do
       expect do
         click_link 'upvote=>1'
       end.to change {Vote.count}.by(1)
+      page.should_not have_link 'upvote=>1'
     end
     
   end
