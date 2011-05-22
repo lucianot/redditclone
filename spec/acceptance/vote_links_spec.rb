@@ -15,8 +15,38 @@ feature 'voting' do
       expect do
         click_link 'upvote=>1'
       end.to change {Vote.count}.by(1)
+      page.should have_content 'Link upvoted.'
+      page.should have_css("img[alt='upvote=>1']") 
       page.should_not have_link 'upvote=>1'
-    end
+    end   
     
+    scenario 'downvote link' do
+      visit '/'
+      expect do
+        click_link 'downvote=>1'
+      end.to change {Vote.count}.by(1)
+      page.should have_content 'Link downvoted.'
+      page.should have_css("img[alt='downvote=>1']")
+      page.should_not have_link 'downvote=>1'
+    end 
+  end
+  
+  context 'logged out' do
+    
+    before(:each) do
+      link = Factory(:link)
+    end
+
+    scenario 'upvote link' do
+      visit '/'
+      click_link 'upvote=>1'
+      page.should have_content "Forgot your password?"
+    end    
+    
+    scenario 'downvote link' do
+      visit '/'
+      click_link 'downvote=>1'
+      page.should have_content "Forgot your password?"
+    end
   end
 end

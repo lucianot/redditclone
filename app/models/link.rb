@@ -15,6 +15,10 @@ class Link < ActiveRecord::Base
     vote = voter.votes.create!(:link => self, :value => 1) 
   end
   
+  def downvote(voter)
+    vote = voter.votes.create!(:link => self, :value => -1) 
+  end
+  
   def voted_by?(user)
     if user
       self.votes.find_by_user_id(user.id)

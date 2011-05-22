@@ -1,5 +1,5 @@
 class LinksController < ApplicationController
-  before_filter :authenticate_user!, :except => :index
+  before_filter :authenticate_user!, :except => [ :index ]
   
   # GET /links
   def index
@@ -23,9 +23,23 @@ class LinksController < ApplicationController
   
   # POST /links/1/upvote
   def upvote
-    @link = Link.find(params[:id])
-    @link.upvote(current_user)
-    redirect_to root_path
+    if current_user
+      @link = Link.find(params[:id])
+      @link.upvote(current_user)
+      redirect_to root_path, :notice => 'Link upvoted.'
+    else
+      redirect_to root_path, :notice => 'You must be signed in to vote.'
+    end
   end
   
+  # POST /links/1/downvote
+  def downvote
+    if current_user
+      @link = Link.find(params[:id])
+      @link.downvote(current_user)
+      redirect_to root_path, :notice => 'Link downvoted.'
+    else
+      redirect_to root_path, :notice => 'You must be signed in to vote.'
+    end
+  end    
 end

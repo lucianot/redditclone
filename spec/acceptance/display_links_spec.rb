@@ -11,6 +11,8 @@ feature 'display links' do
     user = Factory(:user, :email => 'user@example.com')
     link = Factory(:link, :submitter => user)
     visit "/"
+    page.should have_link 'upvote=>1'
+    page.should have_link 'downvote=>1'    
     page.should have_content "1."
     page.should have_link("This guy copied my site", 
         :href => "http://www.reddit.com")
