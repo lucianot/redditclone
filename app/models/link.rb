@@ -11,6 +11,10 @@ class Link < ActiveRecord::Base
   
   before_validation :append_url, :only => :url
   
+  def points
+    self.votes.map {|vote| vote.value}.sum
+  end
+  
   def upvote(voter)
     vote = voter.votes.create!(:link => self, :value => 1) 
   end

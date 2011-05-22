@@ -27,6 +27,7 @@
 					<% end %></td>			
 	    <td><%= link_to link.title, link.url %></td>
 	    <td><%= "(#{link.clean_url})" %></td>
+			<td><%= pluralize(link.points, "point") %></td>
 	    <td><%= "by #{link.submitter.email}" %></td>
 			<td><%= "#{time_ago_in_words(link.created_at)} ago" %></td>
 	  </tr>
