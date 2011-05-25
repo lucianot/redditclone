@@ -1,4 +1,7 @@
 Factory.sequence(:email) { |n| "user#{n}@example.com" }
+Factory.sequence(:title) { |n| "Sample link ##{n}"}
+Factory.sequence(:url) { |n| "www.sampleurl#{n}.com"}
+
 
 Factory.define :user do |user|
   user.email { Factory.next :email }
@@ -7,8 +10,8 @@ Factory.define :user do |user|
 end
 
 Factory.define :link do |link|
-  link.title 'This guy copied my site'
-  link.url 'www.reddit.com'
+  link.title { Factory.next :title }
+  link.url { Factory.next :url }
   link.association :submitter, :factory => :user
 end
 

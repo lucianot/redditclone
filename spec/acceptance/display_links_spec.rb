@@ -15,9 +15,9 @@ feature 'display links' do
     page.should have_link 'upvote=>1'
     page.should have_link 'downvote=>1'    
     page.should have_content "1."
-    page.should have_link("This guy copied my site", 
-        :href => "http://www.reddit.com")
-    page.should have_content "(reddit.com)"
+    page.should have_link("Sample link #1", 
+        :href => "http://www.sampleurl1.com")
+    page.should have_content "(sampleurl1.com)"
     page.should have_content '1 point'
     page.should have_content "by user@example.com"
     page.should have_content "ago"

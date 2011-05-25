@@ -4,8 +4,8 @@ describe Link do
   
   before(:each) do
     @submitter = Factory(:user)
-    @attr = { :title => "This guy copied my site", 
-              :url => "http://www.reddit.com" }
+    @attr = { :title => "Sample title", 
+              :url => "http://www.sampleurl.com" }
     @link = @submitter.links.create!(@attr)
   end
 

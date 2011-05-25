@@ -8,6 +8,9 @@
 
 user = User.create([{ :email => "user@example.com",
                       :password => "password"}])
-link = Link.create([{ :title => "This guy copied my site",
+link = Link.create([{ :title => "This links to Reddit",
                       :url => "www.reddit.com",
+                      :user => User.first },
+                    { :title => "This links to Google",
+                      :url => "www.google.com",
                       :user => User.first }])

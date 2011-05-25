@@ -9,8 +9,8 @@ feature 'submit link' do
         user = Factory(:user)
         log_in(user)
         click_link "Submit link"
-        fill_in "Title", :with => "This guy copied my site"
-        fill_in "Url", :with => "http://www.reddit.com"
+        fill_in "Title", :with => "Sample title"
+        fill_in "Url", :with => "www.sampleurl.com"
         click_button "Create Link"
         page.should have_content "Link was successfully created."
       end.to change {Link.count}.by(1)
