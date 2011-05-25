@@ -5,20 +5,30 @@
 	<% @links.each_with_index do |link, position| %>
 	  <tr>
 			<td><%= "#{position+1}." %>
-			<td><% if link.voted_by?(current_user) %>
+			<td><% if link.vote_by(current_user) == 1 %>
 						<%= image_tag("arrowup.png", \
 													:alt => "upvote=>#{position+1}", 
 													:border => 0) %>
+					<% elsif link.vote_by(current_user) == -1 %>		
+						<%= link_to image_tag("arrowup.png", 
+																	:alt => "remove_vote=>#{position+1}", 
+																	:border => 0), 
+							 remove_vote_link_path(:id => link.id), :method => :post %>					
 					<% else %>
 						<%= link_to image_tag("arrowup.png", 
 																	:alt => "upvote=>#{position+1}", 
 																	:border => 0), 
 								 upvote_link_path(:id => link.id), :method => :post %>
 					<% end %></td>
-			<td><% if link.voted_by?(current_user) %>
+			<td><% if link.vote_by(current_user) == -1 %>
 						<%= image_tag("arrowdown.png", 
 													:alt => "downvote=>#{position+1}", 
 													:border => 0) %>
+					<% elsif link.vote_by(current_user) == 1 %>		
+						<%= link_to image_tag("arrowup.png", 
+																	:alt => "remove_vote=>#{position+1}", 
+																	:border => 0),
+							 remove_vote_link_path(:id => link.id), :method => :post %>																										
 					<% else %>
 						<%= link_to image_tag("arrowdown.png", 
 																	:alt => "downvote=>#{position+1}", 

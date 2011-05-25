@@ -42,4 +42,15 @@ class LinksController < ApplicationController
       redirect_to root_path, :notice => 'You must be signed in to vote.'
     end
   end    
+  
+  # POST /links/1/remove_vote
+  def remove_vote
+    if current_user
+      @link = Link.find(params[:id])
+      @link.remove_vote(current_user)
+      redirect_to root_path, :notice => 'Vote removed.'
+    else
+      redirect_to root_path, :notice => 'You must be signed in to vote.'
+    end
+  end
 end

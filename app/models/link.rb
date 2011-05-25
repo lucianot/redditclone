@@ -23,11 +23,15 @@ class Link < ActiveRecord::Base
     vote = voter.votes.create!(:link => self, :value => -1) 
   end
   
-  def voted_by?(user)
+  def remove_vote(voter)
+    vote = voter.votes.find_by_link_id(self)
+    vote.destroy
+  end
+  
+  def vote_by(user)
     if user
-      self.votes.find_by_user_id(user.id)
-    else
-      nil
+      vote = self.votes.find_by_user_id(user.id)
+      vote.value if vote
     end
   end
   

@@ -51,19 +51,28 @@ describe Link do
     end
   end
   
-  describe "#voted_by?(user)" do
+  describe "#vote_by(user)" do
     before do
       @other_link = Factory(:link)
       @voter = Factory(:user)
     end
     
-    it 'returns true if vote exists' do
-      @vote = Factory(:vote, :link => @other_link, :voter => @voter)
-      @other_link.voted_by?(@voter).should be_true
+    it 'returns 1 if upvote exists' do
+      @vote = Factory(:vote, :link => @other_link, 
+                             :voter => @voter, 
+                             :value => 1)
+      @other_link.vote_by(@voter).should == 1
     end
     
-    it 'returns false if vote does not exist' do
-      @other_link.voted_by?(@voter).should be_false
+    it 'returns -1 if downvote exists' do
+      @vote = Factory(:vote, :link => @other_link, 
+                             :voter => @voter, 
+                             :value => -1)
+      @other_link.vote_by(@voter).should == -1
+    end
+    
+    it 'returns nil if vote does not exist' do
+      @other_link.vote_by(@voter).should == nil
     end
   end
 

@@ -29,6 +29,28 @@ feature 'voting' do
       page.should have_css("img[alt='downvote=>1']")
       page.should_not have_link 'downvote=>1'
     end 
+    
+    scenario 'remove upvote' do
+      visit '/'
+      click_link 'upvote=>1'
+      expect do
+        click_link 'remove_vote=>1'
+      end.to change {Vote.count}.by(-1)
+      page.should have_content 'Vote removed.'
+      page.should have_link 'upvote=>1'
+      page.should have_link 'downvote=>1'
+    end
+    
+    scenario 'remove dowvote' do
+      visit '/'
+      click_link 'downvote=>1'
+      expect do
+        click_link 'remove_vote=>1'
+      end.to change {Vote.count}.by(-1)
+      page.should have_content 'Vote removed.'
+      page.should have_link 'upvote=>1'
+      page.should have_link 'downvote=>1'
+    end
   end
   
   context 'logged out' do
