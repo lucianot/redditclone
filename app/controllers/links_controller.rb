@@ -3,7 +3,7 @@ class LinksController < ApplicationController
   
   # GET /links
   def index
-    @links = Link.all
+    @links = Link.all.sort {|a,b| b.points <=> a.points}
   end
   
   # GET /links/new

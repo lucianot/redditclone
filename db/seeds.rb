@@ -10,7 +10,10 @@ user = User.create([{ :email => "user@example.com",
                       :password => "password"}])
 link = Link.create([{ :title => "This links to Reddit",
                       :url => "www.reddit.com",
-                      :user => User.first },
+                      :submitter => User.first },
                     { :title => "This links to Google",
                       :url => "www.google.com",
-                      :user => User.first }])
+                      :submitter => User.first }])
+vote = Vote.create([{ :link => Link.last,
+                      :voter => User.first,
+                      :value => 1}])
