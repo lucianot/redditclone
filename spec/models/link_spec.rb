@@ -4,6 +4,7 @@ describe Link do
   
   before(:each) do
     @submitter = Factory(:user)
+    @voter = Factory(:user)
     @attr = { :title => "Sample title", 
               :url => "http://www.sampleurl.com" }
     @link = @submitter.links.create!(@attr)
@@ -48,6 +49,68 @@ describe Link do
       expect do
         @link.destroy
       end.to change {Vote.count}.by(-1)
+    end
+  end
+  
+  context 'when link is upvoted' do
+    it 'should increase score by 1' do
+      expect do
+        Vote.create!(:link => @link, 
+                     :voter => @voter, 
+                     :value => 1)
+      end.should change { @link.points }.by(1)
+    end
+  end
+  
+  context 'when link is downvoted' do
+    it 'should decrease score by 1' do
+      expect do
+        Vote.create!(:link => @link, 
+                     :voter => @voter, 
+                     :value => -1)
+      end.should change { @link.points }.by(-1)
+    end
+  end
+  
+  context 'when upvote is removed' do
+    it 'should decrease score by 1' do
+      vote = Factory(:vote, :link => @link, 
+                            :voter => @voter, 
+                            :value => 1)
+      expect do
+        vote.destroy
+      end.should change { @link.points }.by(-1)
+    end
+  end
+  
+  describe "#update_points" do
+    before(:each) do
+      @voter1 = Factory(:user)
+      @voter2 = Factory(:user)  
+    end
+    
+    it 'returns correct points for 2 upvotes' do
+      expect do
+        Vote.create!(:link => @link, 
+                    :voter => @voter1, 
+                    :value => 1)
+        Vote.create!(:link => @link, 
+                    :voter => @voter2, 
+                    :value => 1)
+      end.should change {Vote.count}.by(2)
+      @link.update_points.should == 2                    
+    end
+    
+    it 'returns correct points for 2 downvotes' do
+      expect do
+        Vote.create!(:link => @link, 
+                    :voter => @voter1, 
+                    :value => -1)
+        Vote.create!(:link => @link, 
+                    :voter => @voter2, 
+                    :value => -1)
+      end.should change {Vote.count}.by(2)
+      @link.update_points.should == -2                    
     end
   end
   

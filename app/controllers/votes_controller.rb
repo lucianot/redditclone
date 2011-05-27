@@ -21,7 +21,9 @@ class VotesController < ApplicationController
   #DELETE links/1/votes
   def destroy
     @vote = current_user.votes.find_by_link_id(params[:link_id])
-    @vote.destroy
-    redirect_to(root_path, :notice => 'Vote removed.')
+    value = @vote.value * -1
+    if @vote.destroy
+      redirect_to(root_path, :notice => 'Vote removed.')
+    end
   end
 end

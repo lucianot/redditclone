@@ -7,4 +7,12 @@ class Vote < ActiveRecord::Base
   validates :link_id, :presence => true,
                       :uniqueness => { :scope => :user_id }
   validates :value, :inclusion => { :in => [-1, 1] }
+  
+  after_create :update_vote_cache
+  after_destroy :update_vote_cache
+  
+  def update_vote_cache
+    self.link.update_points
+  end
+  
 end

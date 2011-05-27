@@ -46,6 +46,5 @@ describe Vote do
       vote.should_not be_valid
       vote.errors[:link_id].should include("has already been taken")
     end
-  end
-  
+  end  
 end

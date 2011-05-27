@@ -9,7 +9,7 @@ feature 'display links' do
   
   scenario 'one or more links' do
     submitter = Factory(:user, :email => 'user@example.com')
-    link = Factory(:link, :submitter => submitter)
+    link = Factory(:link, :submitter => submitter, :points => 1)
     vote = Factory(:vote, :link => link)
     visit "/"
     page.should have_link 'upvote=>1'
