@@ -1,7 +1,12 @@
 class VotesController < ApplicationController  
   before_filter :authenticate_user!
   
-  # POST /votes
+  #GET /votes
+  def index
+    @votes = Vote.all
+  end
+  
+  # POST /links/1/vote/1
   def create
     @vote = current_user.votes.build(:link_id => params[:link_id], 
                                      :value => params[:value])                 
@@ -12,11 +17,8 @@ class VotesController < ApplicationController
       redirect_to root_path
     end
   end
-
-  def index
-    @votes = Vote.all
-  end
   
+  #DELETE links/1/votes
   def destroy
     @vote = current_user.votes.find_by_link_id(params[:link_id])
     @vote.destroy
