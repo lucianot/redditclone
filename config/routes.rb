@@ -1,9 +1,8 @@
 Redditclone::Application.routes.draw do
 
   resources :links, :only => [ :index, :new, :create ] do
-    post 'upvote', :on => :member
-    post 'downvote', :on => :member
-    post 'remove_vote', :on => :member
+    post 'vote/:value' => 'votes#create', :as => 'vote'
+    delete 'votes' => 'votes#destroy', :as => 'remove_vote'
   end
   
   resources :votes, :only => [ :index, :destroy ]

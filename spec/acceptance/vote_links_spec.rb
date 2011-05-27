@@ -5,7 +5,7 @@ feature 'voting' do
   context 'logged in' do
   
     before(:each) do
-      link = Factory(:link)
+      @link = Factory(:link)
       voter = Factory(:user)
       log_in(voter)
     end
@@ -25,9 +25,11 @@ feature 'voting' do
       expect do
         click_link 'downvote=>1'
       end.to change {Vote.count}.by(1)
-      page.should have_content 'Link downvoted.'
-      page.should have_css("img[alt='downvote=>1']")
-      page.should_not have_link 'downvote=>1'
+        page.should have_content 'Link downvoted.'
+      within "#link_#{@link.id}" do
+        page.should have_css("img[alt='downvote=>1']")
+        page.should_not have_link 'downvote=>1'
+      end
     end 
     
     scenario 'remove upvote' do

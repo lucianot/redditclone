@@ -3,13 +3,13 @@ class VotesController < ApplicationController
   
   # POST /votes
   def create
-    @vote = Vote.build(:link => params[:link], 
-                       :voter => current_user,
-                       :value => 1)
+    @vote = current_user.votes.build(:link_id => params[:link_id], 
+                                     :value => params[:value])                 
     if @vote.save!
-      redirect_to(root_path, :notice => 'Vote was successfully created.')
+      notice = params[:value].to_i == -1 ? 'Link downvoted.' : 'Link upvoted.'
+      redirect_to(root_path, :notice => notice)
     else
-      render root_path
+      redirect_to root_path
     end
   end
 
@@ -18,8 +18,8 @@ class VotesController < ApplicationController
   end
   
   def destroy
-    @vote = Vote.find(params[:id])
+    @vote = current_user.votes.find_by_link_id(params[:link_id])
     @vote.destroy
-    redirect_to(votes_path)
+    redirect_to(root_path, :notice => 'Vote removed.')
   end
 end

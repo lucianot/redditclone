@@ -15,19 +15,6 @@ class Link < ActiveRecord::Base
     self.votes.map {|vote| vote.value}.sum
   end
   
-  def upvote(voter)
-    vote = voter.votes.create!(:link => self, :value => 1) 
-  end
-  
-  def downvote(voter)
-    vote = voter.votes.create!(:link => self, :value => -1) 
-  end
-  
-  def remove_vote(voter)
-    vote = voter.votes.find_by_link_id(self)
-    vote.destroy
-  end
-  
   def vote_by(user)
     if user
       vote = self.votes.find_by_user_id(user.id)
