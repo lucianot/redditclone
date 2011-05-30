@@ -12,12 +12,16 @@ class Link < ActiveRecord::Base
   before_validation :append_url, :only => :url
   
   def update_points
-    self.votes.reload
-    score = self.votes.map {|vote| vote.value}.sum
-    self.points = score
-    self.save!
-    score
+   self.update_attribute :points, score = self.votes.sum(:value)
+   score
   end
+  
+  # def update_points
+  #   score = self.votes.map {|vote| vote.value}.sum
+  #   self.points = score
+  #   self.save!
+  #   score
+  # end
   
   def vote_by(user)
     if user
@@ -36,12 +40,16 @@ class Link < ActiveRecord::Base
   end
   
   private
-  
+
   def append_url
-    regex = Regexp.new(%r{\Ahttps?://}i)
-    # use try instead for nil?
-    unless self.url.nil? or self.url.match(regex)
-      self.url = "http://#{self.url}"
-    end
+    self.url = "http://#{self.url}" if self.url && self.url !~ %r(^https?://)
   end
+  
+  # def append_url
+  #   regex = Regexp.new(%r{\Ahttps?://}i)
+  #   # use try instead for nil?
+  #   unless self.url.nil? or self.url.match(regex)
+  #     self.url = "http://#{self.url}"
+  #   end
+  # end
 end
