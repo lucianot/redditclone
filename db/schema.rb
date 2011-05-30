@@ -10,15 +10,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110527003716) do
+ActiveRecord::Schema.define(:version => 20110522000355) do
 
   create_table "links", :force => true do |t|
     t.string   "title"
     t.string   "url"
+    t.integer  "points",     :default => 0
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "points",     :default => 0
   end
 
   create_table "users", :force => true do |t|
@@ -41,8 +41,8 @@ ActiveRecord::Schema.define(:version => 20110527003716) do
 
   create_table "votes", :force => true do |t|
     t.integer  "value"
-    t.integer  "user_id"
     t.integer  "link_id"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

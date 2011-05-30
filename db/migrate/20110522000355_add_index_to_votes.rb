@@ -4,6 +4,6 @@ class AddIndexToVotes < ActiveRecord::Migration
   end
 
   def self.down
-    remove_index :votes, [ :link_id, :user_id ], :unique => true
+    remove_index :votes, [ :link_id, :user_id ]
   end
 end

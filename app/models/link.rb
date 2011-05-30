@@ -11,6 +11,8 @@ class Link < ActiveRecord::Base
   
   before_validation :append_url, :only => :url
   
+  scope :hot, order("points DESC")
+  
   def update_points
    self.update_attribute :points, score = self.votes.sum(:value)
    score
