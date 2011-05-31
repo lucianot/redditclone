@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  #Associations
   has_many :links
   has_many :votes
   

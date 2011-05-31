@@ -7,6 +7,7 @@ gem 'devise', '1.3.4'
 group :development, :test do
   gem 'rspec-rails', '2.5.0'
   gem 'ruby-debug19', :require => 'ruby-debug'
+  gem 'foreigner'
 end
 
 group :test do

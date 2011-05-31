@@ -3,7 +3,7 @@ class LinksController < ApplicationController
   
   # GET /links
   def index
-    @links = Link.hot
+    @links = Link.top
   end
   
   # GET /links/new
@@ -17,7 +17,7 @@ class LinksController < ApplicationController
     if @link.save
       redirect_to(root_path, :notice => 'Link was successfully created.')
     else
-      render :action => "new"
+      render :action => 'new'
     end
   end
 end
