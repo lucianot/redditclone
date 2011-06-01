@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   #Associations
-  has_many :links
-  has_many :votes
+  has_many :links, :foreign_key => 'submitter_id'
+  has_many :votes, :foreign_key => 'voter_id'
   
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable

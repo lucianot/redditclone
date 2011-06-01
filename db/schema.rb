@@ -15,8 +15,8 @@ ActiveRecord::Schema.define(:version => 20110522000355) do
   create_table "links", :force => true do |t|
     t.string   "title"
     t.string   "url"
-    t.integer  "points",     :default => 0
-    t.integer  "user_id"
+    t.integer  "points",       :default => 0
+    t.integer  "submitter_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -42,11 +42,11 @@ ActiveRecord::Schema.define(:version => 20110522000355) do
   create_table "votes", :force => true do |t|
     t.integer  "value"
     t.integer  "link_id"
-    t.integer  "user_id"
+    t.integer  "voter_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "votes", ["link_id", "user_id"], :name => "index_votes_on_link_id_and_user_id", :unique => true
+  add_index "votes", ["link_id", "voter_id"], :name => "index_votes_on_link_id_and_voter_id", :unique => true
 
 end

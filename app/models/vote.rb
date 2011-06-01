@@ -1,13 +1,12 @@
 class Vote < ActiveRecord::Base
   #Associations
-  belongs_to :voter, :class_name => 'User',
-                     :foreign_key => 'user_id'
+  belongs_to :voter, :class_name => 'User'
   belongs_to :link
   
   #Validations
   validates :voter, :presence => true
   validates :link_id, :presence => true,
-                      :uniqueness => { :scope => :user_id }
+                      :uniqueness => { :scope => :voter_id }
   validates :value, :inclusion => { :in => [-1, 1] }
   
   #Callbacks

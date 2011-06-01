@@ -1,7 +1,6 @@
 class Link < ActiveRecord::Base
   #Associations
-  belongs_to :submitter, :class_name => 'User',
-                         :foreign_key => 'user_id'
+  belongs_to :submitter, :class_name => 'User'
   has_many :votes, :dependent => :destroy
   
   #Validations
@@ -30,7 +29,7 @@ class Link < ActiveRecord::Base
   # end
   
   def vote_by(user)
-    self.votes.find_by_user_id(user).try(:value)
+    self.votes.find_by_voter_id(user).try(:value)
   end
   # def vote_by(user)
   #   if user
