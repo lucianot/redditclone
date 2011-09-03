@@ -1,5 +1,6 @@
 require 'rubygems'
 require 'spork'
+require "test_notifier/runner/rspec"
 
 Spork.prefork do
   # This file is copied to spec/ when you run 'rails generate rspec:install'

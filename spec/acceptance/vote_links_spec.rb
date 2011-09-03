@@ -11,9 +11,10 @@ feature 'voting' do
     end
     
     scenario 'upvote link' do
+      
       visit '/'
       expect do
-        click_link 'upvote=>1'
+        click_link 'upvote=>2'
       end.to change {Vote.count}.by(1)
       page.should have_content 'Link upvoted.'
       page.should have_css("img[alt='upvote=>1']") 
