@@ -41,7 +41,7 @@ class Link < ActiveRecord::Base
   def clean_url
     #use try instead for nil?
     unless self.url.nil?
-     parsed_url = URI.parse(self.url).host.sub(/\Awww\./, '')
+      parsed_url = URI.parse(self.url).host.sub(/\Awww\./, '')
     else
       nil
     end
