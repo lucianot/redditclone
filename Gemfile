@@ -1,11 +1,15 @@
 source 'http://rubygems.org'
 
 gem 'rails', ">=3.1.0"
-gem 'sqlite3', '>=1.3.4'
 gem 'devise', '>=1.4.4'
 gem 'rake', '>=0.9.2'
 
+group :production, :staging do
+  gem "pg"
+end
+
 group :development, :test do
+  gem 'sqlite3', '>=1.3.4'
   gem 'rspec-rails', '>=2.6.1'
   gem 'ruby-debug19', :require => 'ruby-debug'
   gem 'foreigner', '>=1.1.1'
