@@ -18,10 +18,10 @@ describe Link do
   
   context 'when url is valid' do
     it "should be valid" do 
-      should have_valid(:url).when('www.google.com', 
-                                    "http://www.google.com",
-                                    "https://www.google.com",
-                                    'www.google.com/extra')
+      should have_valid(:url).when("http://www.google.com",
+                                   "https://www.google.com",
+                                   "www.google.com",
+                                   "google.com")
     end
   end
   
