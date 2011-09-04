@@ -6,8 +6,8 @@ class Link < ActiveRecord::Base
   #Validations
   validates :title, :presence => true
   validates :url, :presence => true
-  validates_url_format_of :url,
-                          :message => 'is completely unacceptable'
+  # validates_url_format_of :url,
+  #                         :message => 'is completely unacceptable'
   validates :submitter, :presence => true
   
   #Callbacks

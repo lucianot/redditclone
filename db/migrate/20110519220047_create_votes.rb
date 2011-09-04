@@ -6,11 +6,11 @@ class CreateVotes < ActiveRecord::Migration
       t.references :voter
       t.timestamps
     end
-    add_foreign_key(:votes, :voter, :dependent => :delete)
+    #add_foreign_key(:votes, :voter, :dependent => :delete)
   end
 
   def self.down
-    remove_foreign_key(:votes, :dependent => :delete)
+    #remove_foreign_key(:votes, :dependent => :delete)
     drop_table :votes
   end
 end

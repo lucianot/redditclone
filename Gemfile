@@ -12,7 +12,7 @@ group :development, :test do
   gem 'sqlite3', '>=1.3.4'
   gem 'rspec-rails', '>=2.6.1'
   gem 'ruby-debug19', :require => 'ruby-debug'
-  gem 'foreigner', '>=1.1.1'
+  #gem 'foreigner', '>=1.1.1'
 end
 
 group :test do
