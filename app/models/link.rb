@@ -7,7 +7,7 @@ class Link < ActiveRecord::Base
   domain_regex = /(^$)|(^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix
   validates :title, :presence => true
   validates :url, :presence => true,
-                  :format    => {  :with => domain_regex  }
+                  :format   => { :with => domain_regex }
   validates :submitter, :presence => true
   
   #Callbacks

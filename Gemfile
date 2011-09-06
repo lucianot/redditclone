@@ -3,6 +3,13 @@ source 'http://rubygems.org'
 gem 'rails', ">=3.1.0"
 gem 'devise', '>=1.4.4'
 gem 'rake', '>=0.9.2'
+gem 'jquery-rails'
+
+group :assets do
+  gem 'sass-rails', "~> 3.1.0"
+  gem 'coffee-rails', "~> 3.1.0"
+  gem 'uglifier'
+end
 
 group :production, :staging do
   gem "pg"

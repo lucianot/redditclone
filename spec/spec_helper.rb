@@ -41,5 +41,6 @@ Spork.each_run do
   # require File.expand_path("../factories", __FILE__)
   load "#{Rails.root}/config/routes.rb" 
   Dir["#{Rails.root}/app/**/*.rb"].each { |f| load f }
+  require Rails.root.join("spec/shared_connection.rb")
 end
 

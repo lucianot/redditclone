@@ -13,13 +13,14 @@
 						<%= link_to image_tag("arrowup.png", 
 																	:alt => "remove_vote=>#{position+1}", 
 																	:border => 0), 
-							 link_remove_vote_path(:link_id => link.id), :method => :delete %>					
+												link_remove_vote_path(:link_id => link.id), 
+												:method => :delete %>					
 					<% else %>
 						<%= link_to image_tag("arrowup.png", 
 																	:alt => "upvote=>#{position+1}", 
 																	:border => 0), 
-								 link_vote_path(:link_id => link.id, :value => 1), 
-										:method => :post %>
+												link_vote_path(:link_id => link.id, :value => 1), 
+												:method => :post %>
 					<% end %></td>
 			<td><% if link.vote_by(current_user) == -1 %>
 						<%= image_tag("arrowdown.png", 
@@ -29,13 +30,14 @@
 						<%= link_to image_tag("arrowdown.png", 
 																	:alt => "remove_vote=>#{position+1}", 
 																	:border => 0),
-							 link_remove_vote_path(:link_id => link.id), :method => :delete %>																										
+							 					link_remove_vote_path(:link_id => link.id), 
+												:method => :delete %>																										
 					<% else %>
 						<%= link_to image_tag("arrowdown.png", 
 																	:alt => "downvote=>#{position+1}", 
 																	:border => 0), 
-								 	link_vote_path(:link_id => link.id, :value => -1), 
-										:method => :post %>
+												link_vote_path(:link_id => link.id, :value => -1), 
+												:method => :post %>
 					<% end %></td>			
 	    <td><%= link_to link.title, link.url %></td>
 	    <td><%= "(#{link.clean_url})" %></td>

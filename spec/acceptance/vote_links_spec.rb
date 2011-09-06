@@ -1,6 +1,6 @@
 require File.expand_path(File.dirname(__FILE__) + '/acceptance_helper')
 
-feature 'voting' do
+feature 'voting', :js => true do
   
   context 'logged in' do
   
