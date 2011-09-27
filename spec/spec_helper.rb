@@ -34,6 +34,8 @@ Spork.prefork do
     
     # Needed for Spork 
     ActiveSupport::Dependencies.clear
+    
+    Capybara.javascript_driver = :webkit
   end
 end
 

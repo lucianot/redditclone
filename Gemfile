@@ -29,6 +29,6 @@ group :test do
   gem 'autotest-standalone', '~> 4.5.6'
   gem 'autotest-fsevent', '~> 0.2.5'
   gem "test_notifier", "~> 0.4.0", :require => "test_notifier/runner/rspec"
-  gem 'spork', '0.9.0.rc5'
+  gem 'spork', '~> 0.9.0.rc5'
   gem "capybara-webkit"
 end
