@@ -7,11 +7,11 @@ class CreateLinks < ActiveRecord::Migration
       t.references :submitter
       t.timestamps
     end
-    #add_foreign_key(:links, :submitter)
+    add_foreign_key(:links, :users, :column => 'submitter_id')
   end
 
   def self.down
-    #remove_foreign_key(:links)
+    remove_foreign_key(:links, :users)
     drop_table :links
   end
 end
